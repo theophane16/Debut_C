@@ -56,7 +56,17 @@ int main(){
     const float PI = 3.14159;
     
 //////////////// arithmetic operators //////////////////////
+    // + || - || * || / || % || ++ || --
 
+    int x = 8;
+    int y = 3;
+    float z = x / (float) y;        // we should cast the divider
+    printf("%f", z);
 
+    x++;    // incrementation
+    y--;    // decrementation
+
+//////////////// arithmetic operators //////////////////////
+// COURS 9 : 46.15
     return 0;
 }
