@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>    // si on veut utiliser des booléens
+#include <string.h>     // si on veut utiliser des strings
+# include <math.h>      // pour utiliser des fonctions mathematiques
 
 // Commentaire (comme en Java)
 /* Commentaire aussi */
@@ -66,7 +68,81 @@ int main(){
     x++;    // incrementation
     y--;    // decrementation
 
-//////////////// arithmetic operators //////////////////////
-// COURS 9 : 46.15
+//////////////// augmented assignment operators //////////////////////  --> shortcut
+    x+=2;       // x = x+2
+    x-=2;       // x = x-2
+    x/=2;       // x = x / 2
+    x*=3;       // x = x * 3
+    x%=4;       // x = x % 4
+
+//////////////// user input //////////////////////  
+    printf("\nDonne moi ton age\n");
+    scanf("%d", &age);          // ici on va demander l'age que l'utilisateur va taper et qui sera noter dans la variable age
+                                // marche avec d'autres type : %s pour les char par exemple
+
+    fgets(name, 25, stdin);
+    name[strlen(name)-1] = '\0';
+
+//////////////// Math functions //////////////////////
+    double A = sqrt(9);         // racine carré
+    double B = pow(2, 4);       // puissance
+    int C = round(3.14);        // arrondir
+    int D = ceil(3.14);         // arrondir à l'unité supérieur --> 4
+    int E = floor(3.99);        // arrondir à l'unité inférieur --> 3
+    double F = fabs(-100);      // absolute value
+    double G = log(3);          // le log d'un nombre
+    double H = sin(45);         // sinus
+    double I = cos(45);         // cosinus
+    double J = tan(45);         // tangente
+
+//////////////// circle circumference program //////////////////////
+    const double PI = 3.14159;
+    double radius;
+    double circumference;
+    double area;
+
+    printf("\nEnter radius of a circle: ");
+    scanf("%f", &radius);
+
+    circumference = 2 * PI * radius;
+    area = PI * radius * radius;
+
+    printf("\ncircumference: %lf", circumference);
+    printf("\narea: %lf", area);
+
+//////////////// hypotenuse calculator program //////////////////////
+    double A;
+    double B;
+    double C;
+
+    printf("Enter side A: ");
+    scanf("%lf", &A);
+
+    printf("Enter side B: ");
+    scanf("%lf", &B);
+
+    C = sqrt(A*A + B*B);
+
+    printf("Side C: %lf", C);
+
+//////////////// if statements //////////////////////
+    int age;
+    printf("\nEnter yout age: ");
+    scanf("%d", &age);
+
+    if(age >= 18){
+        printf("Super");
+    } else if (age == 0){
+        printf("Weird");
+    } else if (age < 0){
+        printf("Impossible");
+    } else {
+        printf("Sad for u");
+    }
+
+//////////////// switch statements //////////////////////
+// COURS n°15 : 1:06:46
+
+
     return 0;
 }
