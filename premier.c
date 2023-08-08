@@ -1,16 +1,31 @@
 #include <stdio.h>
 #include <stdbool.h>    // si on veut utiliser des booléens
 #include <string.h>     // si on veut utiliser des strings
-# include <math.h>      // pour utiliser des fonctions mathematiques
+#include <math.h>      // pour utiliser des fonctions mathematiques
+#include <ctype.h>
 
-// Commentaire (comme en Java)
-/* Commentaire aussi */
-/* escape sequence : 
-    \n = newline
-    \t = tab
-*/
+
+
+//////////////// functions + arguments + return statement //////////////////////
+void birthday(char name[], int age)
+{
+    printf("\nHapy birthday dear %s", name);
+    printf("\nYou are %d years old", age);
+}
+
+double square(double x){
+    return x * x;
+}
+
 
 int main(){
+
+    // Commentaire (comme en Java)
+    /* Commentaire aussi */
+    /* escape sequence : 
+        \n = newline
+        \t = tab
+    */
 
     printf("I like pizza\n");
     printf("I like dkshdsjkq\t");
@@ -141,8 +156,134 @@ int main(){
     }
 
 //////////////// switch statements //////////////////////
-// COURS n°15 : 1:06:46
+    // switch = more efficient alternative to using many "else-if" statements
+                // allow a value to be tested for equality against many cases
+    
+    char grade;
+    printf("\nEnter a letter Grade");
+    scanf("%c",&grade);
+    
+    switch (grade)
+    {
+    case 'A' :
+        printf("Good");
+        break;                  // si il n'y a pas de break on continue les autres possibilités
+    case 'B' :
+        printf("not Bad");
+        break;
+    default:
+        printf("Plz enter a good value");
+        break;
+    }
 
+//////////////// temperature conversion program //////////////////////
+    char unit;
+    float temp;
 
+    printf("\nIs the temperature in (F) or (C): ?");
+    scanf("%c",&unit);
+
+    unit = toupper(unit);       // Pour gérer le problème de casse
+
+    if(unit == 'C'){
+        printf("\nEnter the temp in Celsius");
+        scanf("%f", &temp);
+        temp = (temp * 9 / 5) + 32;
+        printf("\nThe temp in Farenheit is: %.1f", temp);
+    }
+    else if (unit == 'F'){
+        printf("\nEnter the temp in Farenheit");
+        scanf("%f", &temp);
+        temp = ((temp - 32) * 5) / 9;
+        printf("\nThe temp in Celsius is: %.1f", temp);
+    } else {
+        printf("\n %c is not a valid unit of measurement", unit);
+    }
+
+//////////////// calculator program //////////////////////
+    char operator;
+    double num1;
+    double num2;
+    double result;
+
+    printf("\nEnter an operator (+ - * /):");
+    scanf("%c", &operator);
+
+    printf("\nEnter number 1");
+    scanf("%c", &num1);
+
+    printf("\nEnter number 2");
+    scanf("%c", &num2);
+
+    switch (operator)
+    {
+    case '+':
+        result = num1 + num2;
+        printf("\nresult: %lf", result);
+        break;
+    case '-':
+        result = num1 - num2;
+        printf("\nresult: %lf", result);
+        break;
+    case '*':
+        result = num1 * num2;
+        printf("\nresult: %lf", result);
+        break;
+    case '/':
+        result = num1 / num2;
+        printf("\nresult: %lf", result);
+        break;
+    default:
+        break;
+    }
+
+//////////////// AND logical operator //////////////////////
+    // AND --> && --> two conditions are true
+
+    float temp = 25;
+    bool sunny = false;
+
+    if(temp >= 0 && temp <= 30 && sunny){           // ici sunny est un booléen --> mettre "sunny" == "sunny == true" == "sunny = 1"
+        printf("\nIt's ok");
+    } else {
+        printf("\nIt's not");
+    }
+
+//////////////// AND logical operator //////////////////////
+    // OR --> || --> checks if at least one condition is true
+
+    float temp = 25;
+
+    if(temp >= 0 || temp >= 30){
+        printf("\nIt's ok");
+    } else {
+        printf("\nIt's not");
+    }
+
+//////////////// NOT logical operator //////////////////////
+    // NOT --> ! --> reverse the state of the condition
+
+    bool sunny = false;
+
+    if(!sunny){
+        printf("\nIt's not ok");
+    } else {
+        printf("\nIt's ok");
+    }
+
+//////////////// functions + arguments + return statement //////////////////////
+    char name[] = "BROOO";
+    int age = 21;
+    birthday(name, age);     // appel de la fonction
+
+    double x = square(3.14);
+    printf("%lf",x);
+
+//////////////// ternary operator //////////////////////
+    // Cours 24 : 1:38:49
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////// OBLIGATOIRE A LA FIN DE CHAQUE PROGRAMME ///////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////
     return 0;
 }
