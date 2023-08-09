@@ -5,7 +5,6 @@
 #include <ctype.h>
 
 
-
 //////////////// functions + arguments + return statement //////////////////////
 void birthday(char name[], int age)
 {
@@ -16,6 +15,20 @@ void birthday(char name[], int age)
 double square(double x){
     return x * x;
 }
+
+int findMax(int x, int y){
+    return (x > y) ? x : y;             // Donc : si x est supérieur à y --> on retourne x, sinon on retourne y
+}
+
+//////////////// function prototype //////////////////////
+void hello(char[],int);                     // --> ici on previent le programme que l'on va définir cette méthode (après le main), si l'on veut l'appeler on peut mais il faudra respecter le type des arguments
+                                            // POINT IMPORTANT : Many compilers do not check the parameter matching // Missing argument will result in unexpected behavior // A function prototype causes the compiler to flag if arguments are missing
+                                            // ADVANTAGES --> Easier to  navigate a program // Helps with debugging // Commonly used in header files
+
+
+////////////////////////////////////////////
+//////////////// MAIN //////////////////////
+////////////////////////////////////////////
 
 
 int main(){
@@ -280,10 +293,95 @@ int main(){
     printf("%lf",x);
 
 //////////////// ternary operator //////////////////////
-    // Cours 24 : 1:38:49
+    // ternary operator = shortcut to if/else when assigning/returning a value
+    // (condition) ? value if true : value if false
+
+    int max = findMax(3, 4);
+
+    printf("%d", max);
+
+//////////////// string functions //////////////////////
+    char string1[] = "Super";
+    char string2[] = "Ninja";
+
+    strlwr(string1);                        // converts a string to lowercase
+    strupr(string1);                        // converts a string to uppercase
+    strcat(string1, string2);               // appends string2 to end of string1
+    strncat(string1, string2, 1);           // appends n characters from string2 to string1
+    strcpy(string1, string2);               // copy string2 to string1
+    strncpy(string1, string2, 3);           // copy n characters of strings2 to string1
+
+    strset(string1, '?');                   // sets all characters of a string to a given character
+    strnset(string1, 'x', 1);               // sets first n characters of a string to a given character
+    strrev(string1);                        // reverses a string
+
+    int resultat = strlen(string1);                     // returns string length as int
+    int resultat = strcmp(string1, string2);            // string compare all characters
+    int resultat = strncmp(string1, string2, 1);        // string compare n characters
+    int resultat = strcmpi(string1, string2);           // string compare all (in=gnore case)
+    int resultat = strnicmp(string1, string1, 1);       // string compare n characters (ignore case)
+
+//////////////// for loops //////////////////////
+    // = repeat a section of code a limited amount of times
+    for (int i = 0; i <= 10; i++)                           // Pour l'incrémentation on peut aussi mettre i+=2 pour faire 2 par 2
+    {
+        printf("%d\n",i);
+    }
+
+
+//////////////// while loop //////////////////////
+    // = repeat a section of code possibly unlimited times
+    char name[25];
+    printf("\nWhat's your name");
+    fgets(name, 25, stdin);
+    name[strlen(name) - 1] = '\0';
+
+    while(strlen(name) == 0)
+    {
+        printf("\nYou did not enter your name");
+        printf("\nWhat is it ?");
+        fgets(name, 25, stdin);
+    name[strlen(name) - 1] = '\0';
+    }
+
+    printf("\nHello %s, name");
+
+
+//////////////// do while loop //////////////////////
+    // always executes a block of code once, Then checks a condition
+
+    int number = 0; 
+    int sum = 0;
+
+    do
+    {
+        prinf("\nEnter a # above 0:");
+        scanf("%d",&number);
+        if (number > 0)
+        {
+            sum += number;
+        }
+        
+    } while (number > 0);
+
+//////////////// nested loops //////////////////////
+    // a loop inside another loop
+    // Cours 30 : 2:01:35
+
+    
+
+
+
+
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////
     ////////////////// OBLIGATOIRE A LA FIN DE CHAQUE PROGRAMME ///////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////
     return 0;
 }
+
+
+//////////////// function prototype //////////////////////
+    // ici on peut définir les fonctions complètes
+
