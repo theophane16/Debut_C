@@ -584,19 +584,173 @@ int main(){
 
     printf("%d\n", number001);
 
-//////////////// number guessing game (à faire) //////////////////////
+//////////////// number guessing game //////////////////////
+    const int MIN = 0;
+    const int MAX = 100;
+    int guess;
+    int guesses;
+    int answer;
 
+    srand(time(0));     // uses the current time as a seed
 
+    answer = (rand() % MAX) + MIN;      // Generate a random number between MIN & MAX
 
+    do
+    {
+        printf("Enter a guess:");
+        scanf("%d",&guess);
+        if (guess > answer)
+        {
+            printf("\nToo high");
+        } 
+        else if (guess < answer)
+        {
+            printf("\nToo low");
+        }
+        else
+        {
+            printf("\nCorrect");
+        }
+        
+    } while (guess != answer);
     
+    printf("answer: %d\n", answer);
+    printf("guesses: %d\n", guesses);
 
 
+//////////////// quiz game //////////////////////
+    char questions[][100] = {"1.What year did the C language debut ?: ",
+                                "2. Who is credited with creating C?:c"};
+
+    char options[][100] = {"A. 1965", "B.452", "C.7895",
+                            "A.Dennis Ritchie", "B.Nikola Tesla", "C.John Carmak"};
+
+    char answers[2] = {'B', 'A'};
+    int numberOfQuestions = sizeof(questions)/sizeof(questions[0]);
+
+    char guess;
+    int score;
+
+    printf("QUIZ GAME\n");
+
+    for (int i = 0; i < numberOfQuestions; i++)
+    {
+        printf("%s\n", questions[i]);
+
+        for (int j = (i * 4); j < (i * 3)+3; j++)
+        {
+            printf("%s\n", options[j]);
+        }
+        printf("guess: ");
+        scanf("%c", &guess);
+        scanf("%c");        // clear \n from input buffer 
+
+        guess = toupper(guess);
+
+        if (guess == answer[i])
+        {
+            printf("Correct!\n");
+        } 
+        else 
+        {
+            printf("Wrong! \n");
+        }
+    }
+    printf("Score : %d/%d", score, numberOfQuestions);
+
+//////////////// bitwise operators //////////////////////
+    // bitwise operators = special operators used in bit level programming
+
+    // & = AND
+    // | = OR
+    // ^ = XOR                                                            // Si j'ai bien compris ici on manipule les bits, il ne faut donc pas se fier au nombre mais bien aux binaires qui les définissent
+    // << left shift
+    // >> right shift
+
+    int x = 6;      // 6 = 00000110
+    int y = 12;     // 12 = 000001100
+    int z = 0;      // 0 = 00000000
+
+    z = x & y;
+    printf("AND = %d\n", z);            // AND = 4
+
+//////////////// Memory adress //////////////////////
+    // memory = an array of bytes within RAM (street)
+    // memory block = a single unit (byte) within memory, used to hold some value (person)
+    // memory adress = the adress of where a memory block is located (house adress)
+    
+    char a = 'X';
+    char b = 'Y';
+    char c = 'Z';
+
+    printf("%d bytes", sizeof(a));          // --> donne 1 bytes
+    printf("%d bytes", sizeof(b));          // --> donne 1 bytes
+    printf("%d bytes", sizeof(c));          // --> donne 1 bytes
+
+    printf("%p\n", &a);                     // --> avoir la memory adress --> en Hexadecimal --> ex : 000000000061FE1F
+    printf("%p\n", &b);                     // 000000000061FE1E
+    printf("%p\n", &c);                     // 000000000061FE1D
+
+    // Pour des short --> a besoin de 2 bytes donc chaque adresse mémoire sera séparée de 2 cette fois --> 000000000061FE1E // 000000000061FE1C // 000000000061FE1A
+    // Pour des int --> 4 bytes 000000000061FE1C // 000000000061FE18 // 000000000061FE14
+    // Pour des double --> 8 bytes 000000000061FE18 // 000000000061FE10 // 000000000061FE02 --> ici 02 pour le dernier car on passe de 10 donc l'avant dernier byte passe de 1 à 0 et le dernier est décrementé de 8 
 
 
+    char t[3];      // --> utilise 3 bytes de mémoire   (3*1)
+    double r[3];    // --> utilise 3*8 bytes de mémoire --> 24
 
+//////////////// Pointers //////////////////////
+    // pointer = a "variable-like" reference that holds a memroy adress to another variable // more tasks are performed more easily with pointers // * = inderection operator (value at adress) 
+    int age = 21;
+    int *pAge = &age;                   // le nom avec p + nom de la variable avec la première lettre en majuscule
+    // WARNING : je ne peux pas noter "char *pAge = &age" --> il faut que ce soit un int sinon --> erreur
 
+    prtinf("adress of age: %p\n", &age);
+    printf("value of pAge: %p\n",pAge);
 
+    printf("size of age: %d bytes\n", sizeof(age));
+    printf("size of pAge: %d bytes\n", sizeof(pAge));
 
+    printf("value of age: %d\n",age);
+    printf("value at stored adress: %d\n",*pAge);   // dereferencing
+
+//////////////// writing files //////////////////////
+    // FILE *pF = fopen("test.txt", "a");
+    FILE *pF = fopen("C:\\Users\\Utilisateur\\Desktop\\Debut_C\\test.txt", "a");            // on peut donc utiliser un chemin absolu pour mettre le fichier où l'on veut
+
+    fprint(pF, "\nPatrick starr");
+
+    fclose(pF);
+
+    if (remove("test.txt") == 0)
+    {
+        printf("That file was deleted successfully!");
+    }
+    else 
+    {
+        printf("That was not deleted !");
+    }
+
+//////////////// reading files //////////////////////
+    FILE *pf = fopen("C:\\Users\\Utilisateur\\Desktop\\Debut_C\\poem.txt", "r");
+
+    char buffer[255];
+
+    if (pf == NULL)                             // on vérifie que le fichier existe
+    {
+        prtinf("Unable toopen file!\n");
+    }
+    else 
+    {
+        while (fgets(buffer, 255, pF) != NULL)          // si il existe on peut lire ce qu'il y a dedans
+        {
+        printf("%s", buffer);
+        }
+    }
+
+    fclose(pF);
+
+//////////////// tic tac toe game //////////////////////
 
 
 
